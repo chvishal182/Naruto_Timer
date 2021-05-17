@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     int min =30,max=1800,minutes,seconds,g,ipos;
     MediaPlayer mediaPlayer;
     CountDownTimer countDownTimer;
+    boolean play = false;
 
     public void resetTime(int x)
     {
@@ -81,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(play==true)
+                {
+                    mediaPlayer.pause();play = false;
+                }
+
                 sound.setVisibility(View.INVISIBLE);
                 if(g==0)
                 {
@@ -96,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onFinish() {
                             mediaPlayer.seekTo(0);
                             mediaPlayer.start();
-
+                            play = true;
                             sound.setVisibility(View.VISIBLE);
                             resetTime(min);
                         }
